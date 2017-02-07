@@ -2,31 +2,35 @@
 
 # Install and load `ggplot2`
 # You will also want to load `dplyr`
-
+library("ggplot2")
 
 # For this exercise you'll be working with the `diamonds` data set included in the ggplot2 library
 # Use `?diamonds` to get more information about this data set (including the column descriptions
 # Also check the _column names_ and the _number of rows_ in the data set
-
+?diamonds
+View(diamonds)
+colnames(diamonds)
+nrow(diamonds)
+# 53940
 
 # This data set has a lot of rows. To make things a bit more readable,
 # use dplyr's `sample_n()` function to get a random 1000 rows from the data set
 # Store this sample in a variable `diamonds.sample`
-
-
+library(dplyr)
+diamonds.sample <- sample_n(diamonds,1000)
 # Start by making a new `ggplot` with the `diamonds.sample` as the data (no geometry yet)
 # What do you see?
-
-
+ggplot(data = diamonds.sample)
+# nothing
 # Draw a scatter plot (with point geometry) with for the `diamonds.sample` set,
 # with the `carat` mapped to the x-position and `price` mapped to the y-position.
-
+ggplot(data = diamonds.sample)+ geom_point(mapping = aes(x = carat, y = price,color = color))
 
 # Draw the same plot as above, but color each of the points based on their clarity.
 
-
 # Draw the same plot as above, but for the entire `diamonds` data set. Note this may take
 # a few seconds to generate.
+ggplot(data = diamonds)+ geom_point(mapping = aes(x = carat, y = price,color = color))
 
 
 # Draw another scatter plot for `diamonds.sample` of price (y) by carat (x),
